@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Aryanshh Srivastava</title>
+  <meta name="description"
+    content="Explore a curated collection of digital experiences, brand systems, and interactive products by Aryanshh Srivastava.">
+
+  <!-- Fonts -->
+  <link rel="stylesheet"
+    href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@900,800,700&f[]=satoshi@400,700&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Three.js & Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+
+<body class="page-projects">
+
+  <!-- ═══ Custom Cursor ═══ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- ═══ Grain Overlay ═══ -->
+  <div class="grain-overlay" aria-hidden="true">
+    <svg>
+      <filter id="grain-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grain-filter)" />
+    </svg>
+  </div>
+
+  <!-- ═══ Mesh Blobs ═══ -->
+  <div class="blobs-container" aria-hidden="true">
+    <div class="blob blob-1" id="blob-1"></div>
+    <div class="blob blob-2" id="blob-2"></div>
+    <div class="blob blob-3" id="blob-3"></div>
+  </div>
+
+  <!-- ═══ Page Loader ═══ -->
+  <div class="loader" id="loader">
+    <div class="loader-orb"></div>
+    <div class="loader-counter" id="loader-counter">00</div>
+    <div class="loader-status" id="loader-status">INITIALIZING EXPERIENCE</div>
+  </div>
+
+  <!-- ═══ Fixed Header ═══ -->
+  <header class="header" id="header">
+    <a href="index.html" class="header-logo" id="header-logo" data-hover>AS.</a>
+    <button class="header-menu-btn" id="menu-btn" data-hover aria-label="Toggle navigation menu">
+      <span class="header-menu-label">MENU</span>
+      <span class="header-menu-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </span>
+    </button>
+  </header>
+
+  <!-- ═══ Circular Navigation Overlay ═══ -->
+  <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+    <div class="nav-links">
+      <a href="index.html" class="nav-link" data-hover data-preview="assets/project-1.png">Home</a>
+      <a href="about.html" class="nav-link" data-hover data-preview="assets/about.png">About</a>
+      <a href="projects.html" class="nav-link" data-hover data-preview="assets/project-2.png">Projects</a>
+      <a href="design.html" class="nav-link" data-hover data-preview="assets/project-4.png">Design</a>
+      <a href="connect.html" class="nav-link" data-hover data-preview="assets/project-3.png">Connect</a>
+    </div>
+    <div class="nav-preview" id="nav-preview">
+      <img src="assets/project-1.png" alt="Preview" id="nav-preview-img" loading="lazy">
+    </div>
+  </nav>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="page-wrapper">
+    <!-- Global 3D Background -->
+    <div id="global-3d-bg"></div>
+    <section class="section section-active">
+      <div class="section-inner">
+        <div class="work-header">
+          <div class="work-header-top">
+            <span class="hero-tag">CURATED WORK</span>
+          </div>
+          <div class="title-3d-flex">
+            <h2 class="work-title">Tech<br>Projects</h2>
+          </div>
+        </div>
+        <div class="work-gate">
+          <button class="view-projects-btn" id="view-projects-btn" data-hover style="margin-top: 0; margin-bottom: 2rem;">
+            <span>VIEW ARCHIVE</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+          <p class="hero-description" style="max-width: 600px;">
+            A deep-dive into digital experiences, brand systems, and interactive products crafted with a focus on motion
+            and immersion.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ Projects Gallery Overlay ═══ -->
+  <div class="projects-gallery" id="projects-gallery">
+    <div class="gallery-backdrop"></div>
+    <div class="gallery-container">
+      <div class="gallery-header">
+        <h2 class="gallery-title">Project Archive</h2>
+        <button class="gallery-close" id="gallery-close" data-hover aria-label="Close archive">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="gallery-grid">
+        <div class="work-card" data-project="nebula" data-hover>
+          <img src="assets/project-1.png" alt="Nebula" loading="lazy">
+          <div class="work-card-overlay">
+            <span class="work-card-number">01</span>
+            <div class="work-card-info">
+              <span class="work-card-title">Nebula</span>
+              <span class="work-card-category">BRAND IDENTITY</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-project="monolith" data-hover>
+          <img src="assets/project-2.png" alt="Monolith" loading="lazy">
+          <div class="work-card-overlay">
+            <span class="work-card-number">02</span>
+            <div class="work-card-info">
+              <span class="work-card-title">Monolith</span>
+              <span class="work-card-category">ARCHITECTURE</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-project="aether" data-hover>
+          <img src="assets/project-3.png" alt="Aether" loading="lazy">
+          <div class="work-card-overlay">
+            <span class="work-card-number">03</span>
+            <div class="work-card-info">
+              <span class="work-card-title">Aether</span>
+              <span class="work-card-category">PRODUCT DESIGN</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-project="synapse" data-hover>
+          <img src="assets/project-4.png" alt="Synapse" loading="lazy">
+          <div class="work-card-overlay">
+            <span class="work-card-number">04</span>
+            <div class="work-card-info">
+              <span class="work-card-title">Synapse</span>
+              <span class="work-card-category">DASHBOARD UI</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-project="horizon" data-hover>
+          <img src="assets/project-1.png" alt="Horizon" loading="lazy">
+          <div class="work-card-overlay">
+            <span class="work-card-number">05</span>
+            <div class="work-card-info">
+              <span class="work-card-title">Horizon</span>
+              <span class="work-card-category">LANDING PAGE</span>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-project="zenith" data-hover>
+          <img src="assets/project-2.png" alt="Zenith" loading="lazy">
+          <div class="work-card-overlay">
+            <span class="work-card-number">06</span>
+            <div class="work-card-info">
+              <span class="work-card-title">Zenith</span>
+              <span class="work-card-category">MOBILE APP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Project Detail Modal ═══ -->
+  <div class="project-modal" id="project-modal">
+    <div class="project-modal-backdrop" id="project-modal-backdrop"></div>
+    <div class="project-modal-card" id="project-modal-card">
+      <button class="project-modal-close" id="project-modal-close" data-hover aria-label="Close project detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div class="project-modal-image">
+        <img src="" alt="" id="project-modal-img" loading="lazy">
+      </div>
+      <div class="project-modal-body">
+        <span class="project-modal-category" id="project-modal-category"></span>
+        <h3 class="project-modal-title" id="project-modal-title"></h3>
+        <p class="project-modal-desc" id="project-modal-desc"></p>
+        <div class="project-modal-links" id="project-modal-links"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <!-- Main Script -->
+  <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design — Aryanshh Srivastava</title>
+  <meta name="description" content="Visual explorations and design gallery by Aryanshh Srivastava.">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@900,800,700&f[]=satoshi@400,700&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page-design">
+
+  <!-- ═══ Custom Cursor ═══ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- ═══ Grain Overlay ═══ -->
+  <div class="grain-overlay" aria-hidden="true">
+    <svg>
+      <filter id="grain-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grain-filter)" />
+    </svg>
+  </div>
+
+  <!-- ═══ Mesh Blobs ═══ -->
+  <div class="blobs-container" aria-hidden="true">
+    <div class="blob blob-1" id="blob-1"></div>
+    <div class="blob blob-2" id="blob-2"></div>
+    <div class="blob blob-3" id="blob-3"></div>
+  </div>
+
+  <!-- ═══ Page Loader ═══ -->
+  <div class="loader" id="loader">
+    <div class="loader-orb"></div>
+    <div class="loader-counter" id="loader-counter">00</div>
+    <div class="loader-status" id="loader-status">INITIALIZING EXPERIENCE</div>
+  </div>
+
+  <!-- ═══ Fixed Header ═══ -->
+  <header class="header" id="header">
+    <a href="index.html" class="header-logo" id="header-logo" data-hover>AS.</a>
+    <button class="header-menu-btn" id="menu-btn" data-hover aria-label="Toggle navigation menu">
+      <span class="header-menu-label">MENU</span>
+      <span class="header-menu-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </span>
+    </button>
+  </header>
+
+  <!-- ═══ Circular Navigation Overlay ═══ -->
+  <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+    <div class="nav-links">
+      <a href="index.html" class="nav-link" data-hover data-preview="assets/project-1.png">Home</a>
+      <a href="about.html" class="nav-link" data-hover data-preview="assets/about.png">About</a>
+      <a href="projects.html" class="nav-link" data-hover data-preview="assets/project-2.png">Projects</a>
+      <a href="design.html" class="nav-link" data-hover data-preview="assets/project-4.png">Design</a>
+      <a href="connect.html" class="nav-link" data-hover data-preview="assets/project-3.png">Connect</a>
+    </div>
+    <div class="nav-preview" id="nav-preview">
+      <img src="assets/project-1.png" alt="Preview" id="nav-preview-img" loading="lazy">
+    </div>
+  </nav>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="page-wrapper">
+    <!-- Global 3D Background -->
+    <div id="global-3d-bg"></div>
+
+    <section class="section section-active">
+      <div class="section-inner">
+        <div class="work-header">
+          <div class="work-header-top">
+            <span class="hero-tag">VISUAL EXPLORATIONS</span>
+          </div>
+          <div class="title-3d-flex">
+            <h2 class="work-title">Creative<br>Designs</h2>
+          </div>
+        </div>
+        <div class="work-gate">
+          <button class="view-projects-btn" id="view-projects-btn" data-hover style="margin-top: 0; margin-bottom: 2rem;">
+            <span>VIEW ARCHIVE</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+          <p class="hero-description" style="max-width: 600px;">
+            A collection of visual experiments, brand systems, and digital art pieces that explore the boundaries of
+            graphic expression and interactive design.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ Projects Gallery Overlay (Reused for Design) ═══ -->
+  <div class="projects-gallery" id="projects-gallery">
+    <div class="gallery-backdrop"></div>
+    <div class="gallery-container">
+      <div class="gallery-header">
+        <h2 class="gallery-title">Design Archive</h2>
+        <button class="gallery-close" id="gallery-close" data-hover aria-label="Close archive">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="gallery-grid">
+        <!-- 6 Design Cards -->
+        <div class="work-card" data-hover>
+          <img src="assets/designs/design-1.png" alt="Design 1">
+          <div class="work-card-overlay">
+            <div class="work-card-info">
+              <span class="work-card-category">BRANDING</span>
+              <h3 class="work-card-title">Identity System</h3>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-hover>
+          <img src="assets/designs/design-2.png" alt="Design 2">
+          <div class="work-card-overlay">
+            <div class="work-card-info">
+              <span class="work-card-category">UI DESIGN</span>
+              <h3 class="work-card-title">App Interface</h3>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-hover>
+          <img src="assets/designs/design-3.png" alt="Design 3">
+          <div class="work-card-overlay">
+            <div class="work-card-info">
+              <span class="work-card-category">POSTER</span>
+              <h3 class="work-card-title">Visual Art</h3>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-hover>
+          <img src="assets/designs/design-4.png" alt="Design 4">
+          <div class="work-card-overlay">
+            <div class="work-card-info">
+              <span class="work-card-category">PACKAGING</span>
+              <h3 class="work-card-title">Brand Pack</h3>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-hover>
+          <img src="assets/designs/design-5.png" alt="Design 5">
+          <div class="work-card-overlay">
+            <div class="work-card-info">
+              <span class="work-card-category">WEB DESIGN</span>
+              <h3 class="work-card-title">Digital Canvas</h3>
+            </div>
+          </div>
+        </div>
+        <div class="work-card" data-hover>
+          <img src="assets/designs/design-6.png" alt="Design 6">
+          <div class="work-card-overlay">
+            <div class="work-card-info">
+              <span class="work-card-category">EDITORIAL</span>
+              <h3 class="work-card-title">Layout Study</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
