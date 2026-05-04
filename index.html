@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryanshh Srivastava — Creative Developer & Designer</title>
+  <meta name="description"
+    content="Portfolio of Aryanshh Srivastava — a creative developer crafting bold, immersive digital experiences at the intersection of design and technology.">
+  <meta property="og:title" content="Aryanshh Srivastava — Creative Developer & Designer">
+  <meta property="og:description"
+    content="Bold, immersive digital experiences at the intersection of design and technology.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="stylesheet"
+    href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@900,800,700&f[]=satoshi@400,700&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+  <!-- ═══ Custom Cursor ═══ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- ═══ Grain Overlay ═══ -->
+  <div class="grain-overlay" aria-hidden="true">
+    <svg>
+      <filter id="grain-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grain-filter)" />
+    </svg>
+  </div>
+
+  <!-- ═══ Mesh Blobs ═══ -->
+  <div class="blobs-container" aria-hidden="true">
+    <div class="blob blob-1" id="blob-1"></div>
+    <div class="blob blob-2" id="blob-2"></div>
+    <div class="blob blob-3" id="blob-3"></div>
+  </div>
+
+  <!-- ═══ Page Loader ═══ -->
+  <div class="loader" id="loader">
+    <div class="loader-orb"></div>
+    <div class="loader-counter" id="loader-counter">00</div>
+    <div class="loader-status" id="loader-status">INITIALIZING EXPERIENCE</div>
+  </div>
+
+  <!-- ═══ Fixed Header ═══ -->
+  <header class="header" id="header">
+    <a href="#" class="header-logo" id="header-logo" data-hover>AS.</a>
+    <button class="header-menu-btn" id="menu-btn" data-hover aria-label="Toggle navigation menu">
+      <span class="header-menu-label">MENU</span>
+      <span class="header-menu-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </span>
+    </button>
+  </header>
+
+  <!-- ═══ Circular Navigation Overlay ═══ -->
+  <nav class="nav-overlay" id="nav-overlay" aria-hidden="true">
+    <div class="nav-links">
+      <a href="#" class="nav-link" data-section="0" data-hover data-preview="assets/project-1.png">Home</a>
+      <a href="#" class="nav-link" data-section="1" data-hover data-preview="assets/about.png">About</a>
+      <a href="#" class="nav-link" data-section="2" data-hover data-preview="assets/project-2.png">Projects</a>
+      <a href="#" class="nav-link" data-section="3" data-hover data-preview="assets/project-4.png">Design</a>
+      <a href="#" class="nav-link" data-section="4" data-hover data-preview="assets/project-3.png">Contact</a>
+    </div>
+    <div class="nav-preview" id="nav-preview">
+      <img src="assets/project-1.png" alt="Preview" id="nav-preview-img">
+    </div>
+  </nav>
+
+  <!-- ═══ Sections ═══ -->
+  <main class="sections-wrapper" id="sections-wrapper">
+
+    <!-- Section 0: Hero -->
+    <section class="section section-active" id="section-0" data-section-name="Home">
+      <div class="section-inner hero">
+        <div class="hero-blob-accent" aria-hidden="true"></div>
+        <span class="hero-tag">DESIGNER x DEVELOPER</span>
+        <h1 class="hero-title">
+          <span class="hero-title-line"><span>ARYANSHH</span></span>
+          <span class="hero-title-line outline-text"><span>SRIVASTAVA</span></span>
+        </h1>
+        <p class="hero-description"> Two Liner</p>
+
+        <a href="assets/resume.pdf" target="_blank" class="hero-resume-btn" data-hover>
+          <span>VIEW RESUME</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 7h10v10M7 17L17 7" />
+          </svg>
+        </a>
+      </div>
+      </div>
+    </section>
+
+    <!-- Section 1: About -->
+    <section class="section" id="section-1" data-section-name="About">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-content">
+            <h2 class="about-heading">
+              Creative<br>
+              <span class="outline-text">Developer</span>
+            </h2>
+            <p class="about-body">
+              I'm Aryanshh — a creative developer who lives at the crossroads of design and engineering. I build
+              immersive web experiences, brand systems, and interactive products that push the limits of what's possible
+              in the browser. Every project is an opportunity to create something extraordinary.
+            </p>
+            <div class="about-stats">
+              <div class="about-stat">
+                <span class="about-stat-number" data-count="5">0</span>
+                <span class="about-stat-label">YEARS EXP</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat-number" data-count="40">0</span>
+                <span class="about-stat-label">PROJECTS</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat-number" data-count="20">0</span>
+                <span class="about-stat-label">CLIENTS</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-image-container" data-hover>
+            <img src="assets/about.png" alt="Aryanshh Srivastava portrait" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Projects -->
+    <section class="section" id="section-2" data-section-name="Projects">
+      <div class="section-inner">
+        <div class="work-header">
+          <span class="hero-tag">FEATURED WORK</span>
+          <h2 class="work-title">Selected<br>Projects</h2>
+        </div>
+        <div class="work-grid">
+          <div class="work-card" data-hover data-project="nebula">
+            <img src="assets/project-1.png" alt="Nebula Brand Identity" loading="lazy">
+            <div class="work-card-overlay">
+              <span class="work-card-number">01</span>
+              <div class="work-card-info">
+                <span class="work-card-title">Nebula</span>
+                <span class="work-card-category">BRAND IDENTITY</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card" data-hover data-project="monolith">
+            <img src="assets/project-2.png" alt="Monolith Architecture" loading="lazy">
+            <div class="work-card-overlay">
+              <span class="work-card-number">02</span>
+              <div class="work-card-info">
+                <span class="work-card-title">Monolith</span>
+                <span class="work-card-category">ARCHITECTURE</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card" data-hover data-project="aether">
+            <img src="assets/project-3.png" alt="Aether Product Design" loading="lazy">
+            <div class="work-card-overlay">
+              <span class="work-card-number">03</span>
+              <div class="work-card-info">
+                <span class="work-card-title">Aether</span>
+                <span class="work-card-category">PRODUCT DESIGN</span>
+              </div>
+            </div>
+          </div>
+          <div class="work-card" data-hover data-project="synapse">
+            <img src="assets/project-4.png" alt="Synapse Dashboard" loading="lazy">
+            <div class="work-card-overlay">
+              <span class="work-card-number">04</span>
+              <div class="work-card-info">
+                <span class="work-card-title">Synapse</span>
+                <span class="work-card-category">DASHBOARD UI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ Project Detail Modal ═══ -->
+    <div class="project-modal" id="project-modal">
+      <div class="project-modal-backdrop" id="project-modal-backdrop"></div>
+      <div class="project-modal-card" id="project-modal-card">
+        <button class="project-modal-close" id="project-modal-close" data-hover aria-label="Close project detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <div class="project-modal-image">
+          <img src="" alt="" id="project-modal-img">
+        </div>
+        <div class="project-modal-body">
+          <span class="project-modal-category" id="project-modal-category"></span>
+          <h3 class="project-modal-title" id="project-modal-title"></h3>
+          <p class="project-modal-desc" id="project-modal-desc"></p>
+          <div class="project-modal-links" id="project-modal-links"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Design -->
+    <!--
+      TO ADD/REMOVE DESIGNS:
+      1. Drop your image into assets/designs/
+      2. Copy a <div class="design-frame"> block below
+      3. Update the src and alt
+      4. Pick a size class: design-frame-tall, design-frame-wide,
+         or leave blank for default square
+    -->
+    <section class="section" id="section-3" data-section-name="Design">
+      <div class="section-inner">
+        <div class="design-header">
+          <span class="hero-tag">VISUAL EXPLORATIONS</span>
+          <h2 class="design-title">Design<br><span class="outline-text">Gallery</span></h2>
+        </div>
+        <div class="design-gallery">
+          <div class="design-frame design-frame-tall" data-hover>
+            <img src="assets/designs/design-1.png" alt="Brand Identity Mockup" loading="lazy">
+            <div class="design-frame-label">BRAND IDENTITY</div>
+          </div>
+          <div class="design-frame" data-hover>
+            <img src="assets/designs/design-2.png" alt="App UI Design" loading="lazy">
+            <div class="design-frame-label">APP DESIGN</div>
+          </div>
+          <div class="design-frame" data-hover>
+            <img src="assets/designs/design-3.png" alt="Poster Design" loading="lazy">
+            <div class="design-frame-label">POSTER ART</div>
+          </div>
+          <div class="design-frame design-frame-wide" data-hover>
+            <img src="assets/designs/design-4.png" alt="Packaging Design" loading="lazy">
+            <div class="design-frame-label">PACKAGING</div>
+          </div>
+          <div class="design-frame" data-hover>
+            <img src="assets/designs/design-5.png" alt="Web Design" loading="lazy">
+            <div class="design-frame-label">WEB DESIGN</div>
+          </div>
+          <div class="design-frame design-frame-tall" data-hover>
+            <img src="assets/designs/design-6.png" alt="Editorial Design" loading="lazy">
+            <div class="design-frame-label">EDITORIAL</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Contact -->
+    <section class="section" id="section-4" data-section-name="Contact">
+      <div class="section-inner contact-inner">
+        <a href="mailto:hello@aryanverma.dev" class="contact-heading" data-hover>Let's Build</a>
+        <div class="contact-socials">
+          <!-- GitHub -->
+          <a href="https://github.com" target="_blank" rel="noopener" class="contact-social-link" data-hover
+            aria-label="GitHub">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+            </svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="https://twitter.com" target="_blank" rel="noopener" class="contact-social-link" data-hover
+            aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-social-link" data-hover
+            aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          </a>
+        </div>
+        <p class="contact-footer">© 2026 ARYANSHH SRIVASTAVA — ALL RIGHTS RESERVED</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ Section Progress Indicator ═══ -->
+  <div class="progress-indicator" id="progress-indicator">
+    <span class="progress-current" id="progress-current">01</span>
+    <div class="progress-line" id="progress-line"></div>
+    <span class="progress-total">05</span>
+  </div>
+
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <!-- Main Script -->
+  <script src="main.js"></script>
+</body>
+
+</html>
