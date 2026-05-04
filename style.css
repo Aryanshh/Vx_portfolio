@@ -1157,19 +1157,27 @@ img {
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 12vw, 12vw);
+    font-size: clamp(2.2rem, 10vw, 10vw);
+    margin-bottom: 2rem;
+  }
+
+  .nav-link {
+    font-size: clamp(2rem, 12vw, 12vw);
+    -webkit-text-stroke: 1px var(--white);
   }
 
   .about-stats {
     gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .contact-heading {
-    font-size: clamp(2rem, 8vw, 8vw);
+    font-size: clamp(1.8rem, 10vw, 10vw);
   }
 
   .design-gallery {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .design-frame-tall {
