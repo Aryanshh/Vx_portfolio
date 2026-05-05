@@ -260,9 +260,33 @@
         });
       }
 
-      projectsGallery.querySelectorAll('.work-card').forEach(card => {
-        card.addEventListener('click', () => openProjectModal(card.getAttribute('data-project')));
-      });
+      // Showcase Hover Interaction
+      const showcaseItems = $$('.showcase-item');
+      const previewContainer = $('#showcase-preview');
+      const previewImg = $('#showcase-preview-img');
+
+      if (previewContainer && showcaseItems.length > 0) {
+        showcaseItems.forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            const imgPath = item.getAttribute('data-img');
+            previewImg.src = imgPath;
+            gsap.to(previewContainer, { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' });
+          });
+
+          item.addEventListener('mouseleave', () => {
+            gsap.to(previewContainer, { opacity: 0, scale: 0.8, duration: 0.3, ease: 'power3.in' });
+          });
+
+          item.addEventListener('mousemove', (e) => {
+            gsap.to(previewContainer, {
+              x: e.clientX,
+              y: e.clientY,
+              duration: 0.8,
+              ease: 'power3.out'
+            });
+          });
+        });
+      }
     }
   }
 
