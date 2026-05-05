@@ -281,6 +281,8 @@
             gsap.to(previewContainer, {
               x: e.clientX,
               y: e.clientY,
+              xPercent: 0,
+              yPercent: 0,
               duration: 0.8,
               ease: 'power3.out'
             });
