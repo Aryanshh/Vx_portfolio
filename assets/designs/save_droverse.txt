@@ -1,0 +1,1 @@
+IMAGE_SAVE_REQUEST:input_file_0.png -> c:\Users\aryan\Desktop\vX_portfolio\assets\designs\droverse_2025_horizontal.png
