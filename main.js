@@ -117,6 +117,7 @@
   // ════════════════════════════════════════════════════════════
 
   function animatePageEntry() {
+    initGlobalBackground();
     const tl = gsap.timeline({ defaults: { ease: ease } });
 
     gsap.from('.page-wrapper', { opacity: 0, y: 30, duration: 1.2 });
@@ -407,7 +408,6 @@
     initBlobs();
     initNavLinks();
     initGallery();
-    initGlobalBackground();
 
     if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
 

@@ -1406,7 +1406,7 @@ img {
 .projects-gallery {
   position: fixed;
   inset: 0;
-  z-index: 2000;
+  z-index: 20000;
   visibility: hidden;
   opacity: 0;
   display: flex;
@@ -1433,7 +1433,7 @@ img {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 16rem 4rem 4rem;
+  padding: 5.3rem 12.5rem 1.3rem;
   overflow-y: auto;
   scrollbar-width: none;
 }
@@ -1447,7 +1447,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 8rem 4rem 2rem;
+  padding: 2.6rem 12.5rem 0.6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1457,7 +1457,7 @@ img {
 
 .gallery-title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -1467,14 +1467,19 @@ img {
 .gallery-close {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.33rem;
   background: none;
   border: none;
   color: var(--white);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 8px;
   letter-spacing: 0.2em;
   cursor: none;
+}
+
+.gallery-close svg {
+  width: 10px;
+  height: 10px;
 }
 
 .showcase-list {
@@ -1698,36 +1703,109 @@ img {
   transition: all 0.5s var(--ease);
 }
 
-.showcase-item:hover .showcase-title {
-  color: var(--white);
-  -webkit-text-stroke: 1px var(--white);
-  padding-left: 2rem;
+/* --- Collage Grid for Designs --- */
+.collage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 10rem;
 }
 
-.showcase-floating-preview {
-  position: fixed;
-  right: 6rem;
-  top: 50%;
-  width: 350px;
-  height: 500px;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transform: translateY(-50%) scale(0.8);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-  border-radius: 1.5rem;
+.collage-item {
+  position: relative;
+  background: var(--bg-alt);
+  border: 1px solid var(--white-10);
+  border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s var(--ease);
 }
 
-.showcase-floating-preview img {
+.collage-item img,
+.collage-item video {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: #050505;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.collage-item:hover img,
+.collage-item:hover video {
+  transform: scale(1.05);
+}
+
+/* Variable spans based on dimensions */
+.collage-item.item-standard {
+  grid-column: span 1;
+  grid-row: span 1;
+  aspect-ratio: 1 / 1;
+}
+
+.collage-item.item-wide {
+  grid-column: span 2;
+  grid-row: span 1;
+  aspect-ratio: 16 / 9;
+}
+
+.collage-item.item-tall {
+  grid-column: span 1;
+  grid-row: span 2;
+  aspect-ratio: 9 / 16;
+}
+
+.collage-item.item-large {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 1 / 1;
+}
+
+/* Info overlay on hover */
+.collage-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3, 3, 3, 0.9) 0%, rgba(3, 3, 3, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.66rem;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.collage-item:hover .collage-info {
+  opacity: 1;
+}
+
+.collage-category {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+.collage-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--white);
 }
 
 @media (max-width: 1024px) {
+  .gallery-container {
+    padding: 4rem 3rem 2rem;
+  }
+
+  .gallery-header {
+    padding: 1.5rem 3rem;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1735,15 +1813,20 @@ img {
   .projects-archive-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .collage-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
 }
 
 @media (max-width: 768px) {
   .gallery-container {
-    padding: 6rem 1.5rem 2rem;
+    padding: 2rem 0.5rem 0.7rem;
   }
 
   .gallery-header {
-    padding: 2rem 1.5rem;
+    padding: 0.7rem 0.5rem;
   }
 
   .gallery-grid {
@@ -1759,6 +1842,19 @@ img {
   .work-card.card-wide {
     grid-column: span 2;
   }
+
+  .collage-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+
+  .collage-item.item-wide,
+  .collage-item.item-large,
+  .collage-item.item-tall {
+    grid-column: span 1;
+    grid-row: span 1;
+    aspect-ratio: 1 / 1 !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1771,6 +1867,10 @@ img {
   .work-card.card-tall {
     grid-column: span 1;
     grid-row: span 1;
+  }
+
+  .collage-grid {
+    grid-template-columns: 1fr;
   }
 }
 
