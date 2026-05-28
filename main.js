@@ -408,6 +408,7 @@
     initBlobs();
     initNavLinks();
     initGallery();
+    initCard3D();
 
     if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
 
@@ -415,6 +416,187 @@
     const projectModalBackdrop = $('#project-modal-backdrop');
     if (projectModalClose) projectModalClose.addEventListener('click', closeProjectModal);
     if (projectModalBackdrop) projectModalBackdrop.addEventListener('click', closeProjectModal);
+  }
+
+  function initCard3D() {
+    const cards = $$('.work-card');
+    if (cards.length === 0 || !window.THREE) return;
+
+    cards.forEach((card) => {
+      const container = card.querySelector('.work-card-3d-container');
+      if (!container) return;
+
+      const projectId = card.getAttribute('data-project');
+      const scene = new THREE.Scene();
+      
+      const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 10);
+      camera.position.z = 3.5;
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      function resize() {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      }
+      resize();
+      
+      let mesh;
+      const group = new THREE.Group();
+      scene.add(group);
+
+      const colorAccent = 0x8B5CF6;
+      const mat = new THREE.MeshPhysicalMaterial({
+        color: colorAccent,
+        roughness: 0.1,
+        metalness: 0.8,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.1,
+        transparent: true,
+        opacity: 0.85,
+        transmission: 0.3,
+        thickness: 0.5,
+        wireframe: false
+      });
+
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: colorAccent,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.2
+      });
+
+      if (projectId === 'dronaksh') {
+        const geom1 = new THREE.TorusGeometry(0.8, 0.08, 16, 100);
+        const geom2 = new THREE.TorusGeometry(0.6, 0.08, 16, 100);
+        const mesh1 = new THREE.Mesh(geom1, mat);
+        const mesh2 = new THREE.Mesh(geom2, mat);
+        mesh2.rotation.x = Math.PI / 2;
+        group.add(mesh1);
+        group.add(mesh2);
+        mesh = group;
+      } else if (projectId === 'monolith') {
+        const geom = new THREE.BoxGeometry(0.7, 1.4, 0.7);
+        const mainMesh = new THREE.Mesh(geom, mat);
+        const wire = new THREE.Mesh(geom, wireMat);
+        wire.scale.setScalar(1.02);
+        group.add(mainMesh);
+        group.add(wire);
+        mesh = group;
+      } else if (projectId === 'aether') {
+        const geom = new THREE.OctahedronGeometry(0.9, 0);
+        const mainMesh = new THREE.Mesh(geom, mat);
+        const wire = new THREE.Mesh(geom, wireMat);
+        wire.scale.setScalar(1.05);
+        group.add(mainMesh);
+        group.add(wire);
+        mesh = group;
+      } else if (projectId === 'synapse') {
+        const geom = new THREE.IcosahedronGeometry(0.9, 2);
+        const pointsMat = new THREE.PointsMaterial({
+          color: colorAccent,
+          size: 0.04,
+          transparent: true,
+          opacity: 0.9
+        });
+        const particles = new THREE.Points(geom, pointsMat);
+        const wire = new THREE.Mesh(geom, wireMat);
+        group.add(particles);
+        group.add(wire);
+        mesh = group;
+      } else if (projectId === 'horizon') {
+        const geom = new THREE.TorusKnotGeometry(0.7, 0.2, 100, 16);
+        mesh = new THREE.Mesh(geom, mat);
+        group.add(mesh);
+      } else if (projectId === 'zenith') {
+        const geom = new THREE.DodecahedronGeometry(0.8, 0);
+        const mainMesh = new THREE.Mesh(geom, mat);
+        const wire = new THREE.Mesh(geom, wireMat);
+        wire.scale.setScalar(1.05);
+        group.add(mainMesh);
+        group.add(wire);
+        mesh = group;
+      } else {
+        const geom = new THREE.SphereGeometry(0.8, 32, 32);
+        mesh = new THREE.Mesh(geom, mat);
+        group.add(mesh);
+      }
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+      scene.add(ambientLight);
+
+      const pointLight1 = new THREE.PointLight(0xffffff, 1.5, 10);
+      pointLight1.position.set(3, 3, 3);
+      scene.add(pointLight1);
+
+      const pointLight2 = new THREE.PointLight(0x8B5CF6, 3, 10);
+      pointLight2.position.set(-3, -3, 3);
+      scene.add(pointLight2);
+
+      const mouse = { x: 0, y: 0 };
+      const targetRotation = { x: 0, y: 0 };
+      let isHovered = false;
+
+      card.addEventListener('mouseenter', () => {
+        isHovered = true;
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        isHovered = false;
+        mouse.x = 0;
+        mouse.y = 0;
+      });
+
+      let inView = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          inView = entry.isIntersecting;
+        });
+      }, { threshold: 0.1 });
+      observer.observe(card);
+
+      let autoRotY = 0;
+      let autoRotX = 0;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!inView) return;
+
+        autoRotY += 0.01;
+        autoRotX += 0.005;
+
+        if (isHovered) {
+          targetRotation.y += (mouse.x * 0.8 - targetRotation.y) * 0.1;
+          targetRotation.x += (mouse.y * 0.8 - targetRotation.x) * 0.1;
+        } else {
+          targetRotation.y += (0 - targetRotation.y) * 0.05;
+          targetRotation.x += (0 - targetRotation.x) * 0.05;
+        }
+
+        group.rotation.x = targetRotation.x + autoRotX;
+        group.rotation.y = targetRotation.y + autoRotY;
+
+        if (projectId === 'dronaksh') {
+          group.children[0].rotation.z += 0.02;
+          group.children[1].rotation.x += 0.02;
+        }
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', resize);
+    });
   }
 
   function initGlobalBackground() {
