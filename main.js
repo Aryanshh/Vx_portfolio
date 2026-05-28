@@ -471,13 +471,41 @@
       });
 
       if (projectId === 'dronaksh') {
-        const geom1 = new THREE.TorusGeometry(0.8, 0.08, 16, 100);
-        const geom2 = new THREE.TorusGeometry(0.6, 0.08, 16, 100);
-        const mesh1 = new THREE.Mesh(geom1, mat);
-        const mesh2 = new THREE.Mesh(geom2, mat);
-        mesh2.rotation.x = Math.PI / 2;
-        group.add(mesh1);
-        group.add(mesh2);
+        const bodyGeom = new THREE.SphereGeometry(0.22, 16, 16);
+        const bodyMesh = new THREE.Mesh(bodyGeom, mat);
+        group.add(bodyMesh);
+
+        const arm1Geom = new THREE.BoxGeometry(1.3, 0.05, 0.05);
+        const arm2Geom = new THREE.BoxGeometry(0.05, 0.05, 1.3);
+        const arm1 = new THREE.Mesh(arm1Geom, mat);
+        const arm2 = new THREE.Mesh(arm2Geom, mat);
+        group.add(arm1);
+        group.add(arm2);
+
+        const rotorPositions = [
+          { x: 0.65, z: 0 },
+          { x: -0.65, z: 0 },
+          { x: 0, z: 0.65 },
+          { x: 0, z: -0.65 }
+        ];
+
+        const props = [];
+        const rotorGeom = new THREE.TorusGeometry(0.18, 0.02, 8, 24);
+        const propGeom = new THREE.BoxGeometry(0.32, 0.01, 0.03);
+
+        rotorPositions.forEach(pos => {
+          const ring = new THREE.Mesh(rotorGeom, mat);
+          ring.rotation.x = Math.PI / 2;
+          ring.position.set(pos.x, 0, pos.z);
+          group.add(ring);
+
+          const prop = new THREE.Mesh(propGeom, mat);
+          prop.position.set(pos.x, 0.03, pos.z);
+          group.add(prop);
+          props.push(prop);
+        });
+
+        group.userData = { propellers: props };
         mesh = group;
       } else if (projectId === 'monolith') {
         const geom = new THREE.BoxGeometry(0.7, 1.4, 0.7);
@@ -586,9 +614,10 @@
         group.rotation.x = targetRotation.x + autoRotX;
         group.rotation.y = targetRotation.y + autoRotY;
 
-        if (projectId === 'dronaksh') {
-          group.children[0].rotation.z += 0.02;
-          group.children[1].rotation.x += 0.02;
+        if (projectId === 'dronaksh' && group.userData.propellers) {
+          group.userData.propellers.forEach((prop, index) => {
+            prop.rotation.y += (index % 2 === 0 ? 0.25 : -0.25);
+          });
         }
 
         renderer.render(scene, camera);
