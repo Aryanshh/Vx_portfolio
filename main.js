@@ -436,13 +436,13 @@
     let geometry;
     const path = window.location.pathname;
 
-    if (path.includes('design.html')) {
+    if (path.includes('design')) {
       // Complex, artistic TorusKnot for Designs
       geometry = new THREE.TorusKnotGeometry(1.5, 0.5, 100, 16);
-    } else if (path.includes('projects.html')) {
+    } else if (path.includes('projects')) {
       // Technical Dodecahedron for Projects
       geometry = new THREE.DodecahedronGeometry(2, 0);
-    } else if (path.includes('connect.html')) {
+    } else if (path.includes('connect')) {
       // Sharp, focused Tetrahedron for Connect
       geometry = new THREE.TetrahedronGeometry(2, 0);
     } else {
@@ -461,7 +461,7 @@
       wireframe: true
     });
     let artifact;
-    if (!path.includes('about.html')) {
+    if (!path.includes('about')) {
       artifact = new THREE.Mesh(geometry, material);
       group.add(artifact);
     }
