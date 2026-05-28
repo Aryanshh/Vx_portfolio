@@ -449,7 +449,7 @@
       const group = new THREE.Group();
       scene.add(group);
 
-      const colorAccent = 0x8B5CF6;
+      const colorAccent = 0xffffff;
       const mat = new THREE.MeshPhysicalMaterial({
         color: colorAccent,
         roughness: 0.1,
